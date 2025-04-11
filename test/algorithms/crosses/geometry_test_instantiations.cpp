@@ -1,10 +1,6 @@
 #include "test_crosses.hpp"
-#include <boost/geometry/geometries/geometries.hpp>
-
-namespace bg = boost::geometry;
 
 // Explicitly instantiate test_geometry for all types used in the tests
-
 // Cartesian 2D point
 template void test_geometry<bg::model::linestring<bg::model::point<double, 2, bg::cs::cartesian>>, bg::model::polygon<bg::model::point<double, 2, bg::cs::cartesian>>>(std::string const&, std::string const&, bool);
 template void test_geometry<bg::model::multi_linestring<bg::model::linestring<bg::model::point<double, 2, bg::cs::cartesian>>>, bg::model::multi_polygon<bg::model::polygon<bg::model::point<double, 2, bg::cs::cartesian>>>>(std::string const&, std::string const&, bool);
@@ -96,4 +92,68 @@ template void test_geometry<
 template void test_geometry<
     bg::model::multi_linestring<bg::model::linestring<bg::model::d2::point_xy<double, bg::cs::cartesian>>>,
     bg::model::polygon<bg::model::d2::point_xy<double, bg::cs::cartesian>>>(
+    std::string const&, std::string const&, bool);
+
+template void test_geometry<
+    bg::model::multi_linestring<bg::model::linestring<bg::model::point<double, 2, bg::cs::spherical_equatorial<bg::degree>>>>,
+    bg::model::polygon<bg::model::point<double, 2, bg::cs::spherical_equatorial<bg::degree>>>>(
+    std::string const&, std::string const&, bool);
+
+
+// Explicit template instantiations for crosses_gc.cpp
+template void test_geometry<
+    bg::model::geometry_collection<boost::variant<
+        bg::model::point<double, 2, bg::cs::cartesian>,
+        bg::model::linestring<bg::model::point<double, 2, bg::cs::cartesian>>,
+        bg::model::polygon<bg::model::point<double, 2, bg::cs::cartesian>>,
+        bg::model::multi_point<bg::model::point<double, 2, bg::cs::cartesian>>,
+        bg::model::multi_linestring<bg::model::linestring<bg::model::point<double, 2, bg::cs::cartesian>>>,
+        bg::model::multi_polygon<bg::model::polygon<bg::model::point<double, 2, bg::cs::cartesian>>>>>,
+    bg::model::geometry_collection<boost::variant<
+        bg::model::point<double, 2, bg::cs::cartesian>,
+        bg::model::linestring<bg::model::point<double, 2, bg::cs::cartesian>>,
+        bg::model::polygon<bg::model::point<double, 2, bg::cs::cartesian>>,
+        bg::model::multi_point<bg::model::point<double, 2, bg::cs::cartesian>>,
+        bg::model::multi_linestring<bg::model::linestring<bg::model::point<double, 2, bg::cs::cartesian>>>,
+        bg::model::multi_polygon<bg::model::polygon<bg::model::point<double, 2, bg::cs::cartesian>>>>>>(
+    std::string const&, std::string const&, bool);
+
+template void test_geometry<
+    bg::model::linestring<bg::model::point<double, 2, bg::cs::cartesian>>,
+    bg::model::geometry_collection<boost::variant<
+        bg::model::point<double, 2, bg::cs::cartesian>,
+        bg::model::linestring<bg::model::point<double, 2, bg::cs::cartesian>>,
+        bg::model::polygon<bg::model::point<double, 2, bg::cs::cartesian>>,
+        bg::model::multi_point<bg::model::point<double, 2, bg::cs::cartesian>>,
+        bg::model::multi_linestring<bg::model::linestring<bg::model::point<double, 2, bg::cs::cartesian>>>,
+        bg::model::multi_polygon<bg::model::polygon<bg::model::point<double, 2, bg::cs::cartesian>>>>>>(
+    std::string const&, std::string const&, bool);
+
+template void test_geometry<
+    bg::model::geometry_collection<boost::variant<
+        bg::model::point<double, 2, bg::cs::cartesian>,
+        bg::model::linestring<bg::model::point<double, 2, bg::cs::cartesian>>,
+        bg::model::polygon<bg::model::point<double, 2, bg::cs::cartesian>>,
+        bg::model::multi_point<bg::model::point<double, 2, bg::cs::cartesian>>,
+        bg::model::multi_linestring<bg::model::linestring<bg::model::point<double, 2, bg::cs::cartesian>>>,
+        bg::model::multi_polygon<bg::model::polygon<bg::model::point<double, 2, bg::cs::cartesian>>>>>,
+    bg::model::polygon<bg::model::point<double, 2, bg::cs::cartesian>>>(
+    std::string const&, std::string const&, bool);
+
+// Missing instantiations for crosses_gc.cpp
+template void test_geometry<
+    bg::model::geometry_collection<boost::variant<
+        bg::model::point<double, 2, bg::cs::cartesian>,
+        bg::model::linestring<bg::model::point<double, 2, bg::cs::cartesian>>,
+        bg::model::polygon<bg::model::point<double, 2, bg::cs::cartesian>>,
+        bg::model::multi_point<bg::model::point<double, 2, bg::cs::cartesian>>,
+        bg::model::multi_linestring<bg::model::linestring<bg::model::point<double, 2, bg::cs::cartesian>>>,
+        bg::model::multi_polygon<bg::model::polygon<bg::model::point<double, 2, bg::cs::cartesian>>>>>,
+    bg::model::linestring<bg::model::point<double, 2, bg::cs::cartesian>>>(
+    std::string const&, std::string const&, bool);
+
+// Missing instantiations for crosses_sph.cpp
+template void test_geometry<
+    bg::model::multi_linestring<bg::model::linestring<bg::model::point<double, 2, bg::cs::spherical_equatorial<bg::degree>>>>,
+    bg::model::ring<bg::model::point<double, 2, bg::cs::spherical_equatorial<bg::degree>>>>(
     std::string const&, std::string const&, bool);

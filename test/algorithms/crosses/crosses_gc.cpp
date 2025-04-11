@@ -7,7 +7,23 @@
 // Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#include "test_crosses.hpp"
+#include <boost/geometry/core/cs.hpp>
+#include <boost/geometry/geometries/point.hpp>
+#include <boost/geometry/geometries/linestring.hpp>
+#include <boost/geometry/geometries/polygon.hpp>
+#include <boost/geometry/geometries/multi_point.hpp>
+#include <boost/geometry/geometries/multi_linestring.hpp>
+#include <boost/geometry/geometries/multi_polygon.hpp>
+#include <boost/geometry/geometries/geometry_collection.hpp>
+#include <boost/variant.hpp>
+#include <string>
+
+namespace bg = boost::geometry;
+
+// Declare test_geometry as extern
+template <typename Geometry1, typename Geometry2>
+extern void test_geometry(std::string const &wkt1, std::string const &wkt2,
+                          bool expected);
 
 using pt_t = bg::model::point<double, 2, bg::cs::cartesian>;
 using ls_t = bg::model::linestring<pt_t>;
@@ -16,7 +32,6 @@ using mpt_t = bg::model::multi_point<pt_t>;
 using mls_t = bg::model::multi_linestring<ls_t>;
 using mpo_t = bg::model::multi_polygon<po_t>;
 using var_t = boost::variant<pt_t, ls_t, po_t, mpt_t, mls_t, mpo_t>;
-//using var_t = boost::variant2::variant<pt_t, ls_t, po_t, mpt_t, mls_t, mpo_t>;
 using gc_t = bg::model::geometry_collection<var_t>;
 
 void test_gc()
@@ -53,7 +68,7 @@ void test_gc()
                               false);
 }
 
-int test_main(int , char* [])
+int test_main(int, char* [])
 {
     test_gc();
 

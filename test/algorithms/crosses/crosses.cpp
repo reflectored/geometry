@@ -22,7 +22,9 @@
 // #include <boost/geometry/strategies/strategies.hpp>
 // #include <boost/geometry/geometries/geometries.hpp>
 // #include <geometry_test_common.hpp>
+// #include <boost/geometry.hpp>
 #include <string>
+
 namespace bg = boost::geometry;
 
 template <typename Geometry1, typename Geometry2>
@@ -32,7 +34,7 @@ extern void test_geometry(std::string const &wkt1, std::string const &wkt2,
 template <typename P> void test_pl() {
   typedef bg::model::multi_point<P> mpt;
   typedef bg::model::linestring<P> ls;
-  typedef bg::model::multi_linestring<ls> mls;//sdasdas
+  typedef bg::model::multi_linestring<ls> mls; //sadsa
 
   test_geometry<mpt, ls>("MULTIPOINT(1 0,1 1)", "LINESTRING(0 0,1 0,3 3)",
                          true);

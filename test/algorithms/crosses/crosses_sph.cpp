@@ -7,13 +7,21 @@
 // Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#include "test_crosses.hpp"
+#include <boost/geometry/core/cs.hpp>
+#include <boost/geometry/geometries/linestring.hpp>
+#include <boost/geometry/geometries/polygon.hpp>
+#include <boost/geometry/geometries/multi_polygon.hpp>
+#include <boost/geometry/geometries/ring.hpp>
+#include <boost/geometry/geometries/multi_linestring.hpp>
+#include <boost/geometry/geometries/point.hpp>
+#include <string>
 
-#include <algorithms/overlay/overlay_cases.hpp>
-#include <algorithms/overlay/multi_overlay_cases.hpp>
+namespace bg = boost::geometry;
 
-#include <boost/geometry/geometries/geometries.hpp>
-
+// Declare test_geometry as extern
+template <typename Geometry1, typename Geometry2>
+extern void test_geometry(std::string const &wkt1, std::string const &wkt2,
+                          bool expected);
 
 template <typename P>
 void test_linestring_polygon()

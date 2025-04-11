@@ -32,5 +32,5 @@ foreach(item IN ITEMS
   )
   boost_geometry_add_unit_test("algorithms" ${item})
   target_link_libraries(boost_geometry_algorithms_${item} PRIVATE geometry_test_instantiations)
-  target_compile_options(boost_geometry_algorithms_${item} PRIVATE -ftime-trace)
+  # target_compile_options(boost_geometry_algorithms_${item} PRIVATE -ftime-trace)
 endforeach()
