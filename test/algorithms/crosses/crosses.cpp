@@ -11,7 +11,17 @@
 
 // Contributed and/or modified by Adam Wulkiewicz, on behalf of Oracle
 
-#include "test_crosses.hpp"
+#include <boost/geometry/geometries/point_xy.hpp>
+#include <boost/geometry/geometries/multi_point.hpp>
+#include <boost/geometry/geometries/linestring.hpp>
+#include <boost/geometry/geometries/multi_linestring.hpp>
+#include <boost/geometry/geometries/polygon.hpp>
+#include <boost/geometry/geometries/multi_polygon.hpp>
+
+namespace bg = boost::geometry;
+
+template <typename A, typename B>
+extern void test_geometry(std::string const&, std::string const&, bool);
 
 template <typename P>
 void test_pl()
